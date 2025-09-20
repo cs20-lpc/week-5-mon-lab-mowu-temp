@@ -26,6 +26,7 @@ class DoublyList : public List<T> {
         void copy(const DoublyList<T>&);
 
     public:
+
         // default constructor
         DoublyList();
 
