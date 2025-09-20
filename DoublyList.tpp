@@ -8,7 +8,6 @@ DoublyList<T>::DoublyList()
 template <typename T>
 DoublyList<T>::DoublyList(const DoublyList<T>& copyObj)
 : header(new Node), trailer(new Node) {
-    std::cout << "copy c'tor" << std::endl;
     header->next = trailer;
     trailer->prev = header;
     copy(copyObj);
@@ -25,7 +24,6 @@ DoublyList<T>& DoublyList<T>::operator=(const DoublyList<T>& rightObj) {
 
 template <typename T>
 DoublyList<T>::~DoublyList() {
-    std::cout << "d'tor" << std::endl;
     clear();
     delete header;
     delete trailer;
@@ -80,7 +78,7 @@ void DoublyList<T>::copy(const DoublyList<T>& copyObj) {
 template <typename T>
 T DoublyList<T>::getElement(int position) const {
     if (position < 0 || position >= this->length) {
-        throw "Out of bounds at getElement()";
+        throw string("Out of bounds at getElement()");
     }
 
     Node* curr = header;
@@ -99,8 +97,8 @@ int DoublyList<T>::getLength() const {
 
 template <typename T>
 void DoublyList<T>::insert(int position, const T& elem) {
-    if (position < 0 || position >= this->length + 1) {
-        throw "Out of bounds at insert()";
+    if (position < 0 || position >= (this->length + 1)) {
+        throw string("Out of bounds at insert()");
     }
     Node* curr = header;
     for (int i = 0; i < position; i++) {
@@ -124,7 +122,7 @@ bool DoublyList<T>::isEmpty() const {
 template <typename T>
 void DoublyList<T>::remove(int position) {
     if (position < 0 || position >= this->length) {
-        throw "Out of bounds at remove()";
+        throw string("Out of bounds at remove()");
     }
 
     Node* curr = header;
@@ -143,7 +141,7 @@ void DoublyList<T>::remove(int position) {
 template <typename T>
 bool DoublyList<T>::search(const T& elem) const {
     Node* curr = header->next;
-    while(curr != trailer && curr->value == elem) {
+    while(curr != trailer && curr->value != elem) {
         curr = curr->next;
     }
     return curr != trailer;
@@ -152,7 +150,7 @@ bool DoublyList<T>::search(const T& elem) const {
 template <typename T>
 void DoublyList<T>::replace(int position, const T& elem) {
     if (position < 0 || position >= this->length) {
-        throw "Out of bounds at replace()";
+        throw string("Out of bounds at replace()");
     }
     Node* curr = header;
     for (int i = 0; i < position; i++) {
