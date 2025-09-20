@@ -153,7 +153,7 @@ void DoublyList<T>::replace(int position, const T& elem) {
         throw string("Out of bounds at replace()");
     }
     Node* curr = header;
-    for (int i = 0; i < position; i++) {
+    for (int i = 0; i < position + 1; i++) {
         curr = curr->next;
     }
     curr->value = elem;
